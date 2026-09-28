@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voxel Bridge Challenge</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<style>
+:root {
+  --bg: #0d1117;
+  --panel: #161b22;
+  --panel-edge: #30363d;
+  --text: #e6edf3;
+  --dim: #8b949e;
+  --accent: #58a6ff;
+  --good: #3fb950;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { min-height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 48px 24px 64px; }
+
+header { text-align: center; margin-bottom: 36px; }
+h1 {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 12px rgba(0,0,0,.8), 0 0 24px rgba(88,166,255,.25);
+}
+.tagline { color: var(--dim); margin-top: 6px; font-size: 14px; }
+
+.panel {
+  background: rgba(22,27,34,.85);
+  border: 1px solid var(--panel-edge);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+}
+.panel h2 {
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 12px;
+}
+.panel p { color: var(--text); margin-bottom: 10px; }
+.panel p:last-child { margin-bottom: 0; }
+.panel .file { color: var(--accent); font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px; }
+
+details { margin-top: 10px; }
+summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  user-select: none;
+}
+summary:hover { text-decoration: underline; }
+details pre {
+  margin-top: 10px;
+  background: #0a0d12;
+  border: 1px solid var(--panel-edge);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #c9d1d9;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+.card {
+  background: rgba(22,27,34,.85);
+  border: 1px solid var(--panel-edge);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color .15s, transform .12s, box-shadow .15s;
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,.5);
+}
+.thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  pointer-events: none;
+}
+.thumb iframe {
+  width: 1920px;
+  height: 1200px;
+  border: 0;
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+.thumb::after {
+  content: "live preview";
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--dim);
+  background: rgba(13,17,23,.75);
+  border: 1px solid var(--panel-edge);
+  border-radius: 999px;
+  padding: 2px 8px;
+  pointer-events: none;
+}
+.card-body { padding: 14px 16px 16px; }
+.model-name {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.open-hint {
+  float: right;
+  font-size: 11px;
+  color: var(--dim);
+  margin-top: 2px;
+}
+.card:hover .open-hint { color: var(--text); }
+
+footer {
+  margin-top: 40px;
+  text-align: center;
+  color: var(--dim);
+  font-size: 12.5px;
+}
+footer a { color: var(--accent); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Voxel Bridge Challenge</h1>
+  <p class="tagline">One prompt, several local models — each had to build the same self-contained Three.js world.</p>
+</header>
+
+<section class="panel">
+  <h2>The Challenge</h2>
+  <p>
+    Every model below received the exact same prompt: build a single self-contained HTML file — no external files, no server —
+    with Three.js voxels that look good (soft rounded edges, ambient occlusion, warm rim lighting, smooth block animations).
+    The scene: a dark world, an orbiting camera, and a blue river between two banks.
+    Four buttons drive it — <strong>Build Bridge</strong> (a two-block-wide arch of exactly forty blocks in four colors),
+    <strong>Earthquake</strong> (remove the two central supports, auto-rebuild from the remaining thirty-eight),
+    <strong>Widen River</strong> (stretch the span from ten to fourteen units with the same blocks),
+    and <strong>Reset</strong>. A live HUD shows block count and river width; a reasoning log narrates every step.
+  </p>
+  <p>
+    The prompt also requires each model to name its output folder after itself and stamp a
+    <span class="file">Model: …</span> badge under the page title — that's how you can tell who built what.
+  </p>
+</section>
+
+<section class="panel">
+  <h2>The Prompt</h2>
+  <p>Source of truth, kept in the <span class="file">voxels</span> repo as <span class="file">prompt.md</span>:</p>
+  <details>
+    <summary>Read the full prompt</summary>
+    <pre id="prompt-text">loading…</pre>
+  </details>
+</section>
+
+<section>
+  <div class="grid" id="grid">
+
+    <a class="card" href="glm5.3-flash-exl3-dual/index.html" target="_blank" rel="noopener">
+      <div class="thumb" data-scale>
+        <iframe src="glm5.3-flash-exl3-dual/index.html" title="glm5.3-flash-exl3-dual preview" tabindex="-1" loading="lazy" scrolling="no"></iframe>
+      </div>
+      <div class="card-body">
+        <span class="open-hint">open full view →</span>
+        <span class="model-name">Model: glm5.3-flash-exl3-dual</span>
+      </div>
+    </a>
+
+    <a class="card" href="deepseek-v4.1-flash-exl3-dual/index.html" target="_blank" rel="noopener">
+      <div class="thumb" data-scale>
+        <iframe src="deepseek-v4.1-flash-exl3-dual/index.html" title="deepseek-v4.1-flash-exl3-dual preview" tabindex="-1" scrolling="no"></iframe>
+      </div>
+      <div class="card-body">
+        <span class="open-hint">open full view →</span>
+        <span class="model-name">Model: deepseek-v4.1-flash-exl3-dual</span>
+      </div>
+    </a>
+
+    <a class="card" href="qween3.8-flash-next-dual/index.html" target="_blank" rel="noopener">
+      <div class="thumb" data-scale>
+        <iframe src="qween3.8-flash-next-dual/index.html" title="qween3.8-flash-next-dual preview" tabindex="-1" loading="lazy" scrolling="no"></iframe>
+      </div>
+      <div class="card-body">
+        <span class="open-hint">open full view →</span>
+        <span class="model-name">Model: qween3.8-flash-next-dual</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<footer>
+  Built with <a href="https://github.com/jvr0x" target="_blank" rel="noopener">jvr0x</a> ·
+  pages source: <a href="https://github.com/jvr0x/jvr0x.github.io" target="_blank" rel="noopener">jvr0x.github.io</a>
+</footer>
+
+</div>
+
+<script>
+// Scale each live iframe (rendered at 1920x1200) down into its 16:10 thumbnail box.
+function scaleThumbs() {
+  document.querySelectorAll('.thumb[data-scale]').forEach(box => {
+    const f = box.querySelector('iframe');
+    if (!f) return;
+    const s = box.clientWidth / 1920;
+    f.style.transform = `scale(${s})`;
+  });
+}
+window.addEventListener('resize', scaleThumbs);
+window.addEventListener('load', scaleThumbs);
+scaleThumbs();
+
+// Show the real prompt text on this page (single source: prompt.md content).
+fetch('prompt.md').then(r => r.ok ? r.text() : Promise.reject(r.status)).then(t => {
+  document.getElementById('prompt-text').textContent = t;
+}).catch(() => {
+  document.getElementById('prompt-text').textContent =
+    'Could not load prompt.md — see the repo: https://github.com/jvr0x/jvr0x.github.io';
+});
+</script>
+</body>
+</html>
