@@ -36,7 +36,21 @@ body {
   line-height: 1.7;
   overflow-x: hidden;
 }
-
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.85rem;
+}
+.topbar .logo { color: var(--green); font-weight: 700; font-size: 1.1rem; }
+.blink { animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.topbar .back {
+  color: var(--text-dim);
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 2px;
+}
+.topbar .back:hover { color: var(--green); border-color: var(--green); }
 a { color: var(--green); text-decoration: none; transition: color 0.2s; }
 a:hover { color: var(--cyan); }
 
@@ -48,7 +62,7 @@ a:hover { color: var(--cyan); }
   background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
 }
 
-.wrap { max-width: 1120px; margin: 0 auto; padding: 100px 24px 64px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 16px 24px 64px; }
 
 header { margin-bottom: 2.5rem; }
 header .prompt { margin-bottom: 0.4rem; }
@@ -174,6 +188,11 @@ footer a:hover { color: var(--green); border-color: var(--green); }
 <body>
 <div class="scanline"></div>
 <div class="wrap">
+
+<div class="topbar">
+  <span class="logo">jvr0x<span class="blink">_</span></span>
+  <a class="back" href="https://jvr0x.github.io/">&larr; jvr0x.github.io</a>
+</div>
 
 <header>
   <p class="prompt">$ cd ~/voxel-bridge-challenge && ls</p>
