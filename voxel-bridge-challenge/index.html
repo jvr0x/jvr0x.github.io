@@ -178,7 +178,7 @@ footer a:hover { color: var(--green); border-color: var(--green); }
 <header>
   <p class="prompt">$ cd ~/voxel-bridge-challenge && ls</p>
   <h1>Voxel Bridge Challenge</h1>
-  <p class="tagline">one prompt · several local models · same world, different builders</p>
+  <p class="tagline">One prompt · several local models · same world, different builders</p>
 </header>
 
 <section class="section">
@@ -189,22 +189,22 @@ footer a:hover { color: var(--green); border-color: var(--green); }
       don't do anything. They measure how well a model can paint a UI, not how well it can think.
     </p>
     <p>
-      this challenge is the opposite. every model gets the same prompt and has to build a single self-contained HTML file,
-      no server, Three.js only. the scene looks simple: a river between two banks. then it isn't.
+      This challenge is the opposite. Every model gets the same prompt and has to build a single self-contained HTML file,
+      no server, Three.js only. The scene looks simple: a river between two banks. Then it isn't.
       <strong>Build Bridge</strong> drops a two-block-wide arch of exactly 40 blocks in four colors.
       <strong>Earthquake</strong> knocks out the two central supports and the model has to rebuild with only the 38 left,
       keeping the thing standing. <strong>Widen River</strong> stretches the river from 10 to 14 units
-      and the bridge has to follow with the same blocks. blocks get moved, counts change, geometry gets reworked on the fly.
+      and the bridge has to follow with the same blocks. Blocks get moved, counts change, geometry gets reworked on the fly.
     </p>
     <p>
-      so what you're comparing here isn't pixel polish. it's whether the model actually understood the sizes,
+      So what you're comparing here isn't pixel polish. It's whether the model actually understood the sizes,
       the colors, the counts and the geometry of its own little world, and whether it can explain every move it made.
-      the reasoning log on the right of each page is where that shows.
+      The reasoning log on the right of each page is where that shows.
     </p>
     <p>
-      the prompt also forces each model to name its output folder after itself and stamp a
-      <span class="file">Model: …</span> badge under the title. that's how you tell who built what.
-      click a card below to open that model's full interactive page.
+      The prompt also forces each model to name its output folder after itself and stamp a
+      <span class="file">Model: …</span> badge under the title. That's how you tell who built what.
+      Click a card below to open that model's full interactive page.
     </p>
   </div>
 </section>
@@ -212,7 +212,7 @@ footer a:hover { color: var(--green); border-color: var(--green); }
 <section class="section">
   <span class="prompt">$ cat prompt.md</span>
   <div class="panel">
-    <p>source of truth, kept in the <span class="file">voxels</span> repo:</p>
+    <p>Source of truth, kept in the <span class="file">voxels</span> repo:</p>
     <details>
       <summary>read the full prompt</summary>
       <pre id="prompt-text">loading…</pre>
@@ -229,7 +229,7 @@ footer a:hover { color: var(--green); border-color: var(--green); }
         <iframe src="glm5.3-flash-exl3-dual/index.html" title="glm5.3-flash-exl3-dual preview" tabindex="-1" loading="lazy" scrolling="no"></iframe>
       </div>
       <div class="card-body">
-        <span class="open-hint">open full view →</span>
+        <span class="open-hint">Open full view →</span>
         <span class="model-name">Model: glm5.3-flash-exl3-dual</span>
       </div>
     </a>
@@ -239,7 +239,7 @@ footer a:hover { color: var(--green); border-color: var(--green); }
         <iframe src="deepseek-v4.1-flash-exl3-dual/index.html" title="deepseek-v4.1-flash-exl3-dual preview" tabindex="-1" scrolling="no"></iframe>
       </div>
       <div class="card-body">
-        <span class="open-hint">open full view →</span>
+        <span class="open-hint">Open full view →</span>
         <span class="model-name">Model: deepseek-v4.1-flash-exl3-dual</span>
       </div>
     </a>
@@ -249,7 +249,7 @@ footer a:hover { color: var(--green); border-color: var(--green); }
         <iframe src="qween3.8-flash-next-dual/index.html" title="qween3.8-flash-next-dual preview" tabindex="-1" loading="lazy" scrolling="no"></iframe>
       </div>
       <div class="card-body">
-        <span class="open-hint">open full view →</span>
+        <span class="open-hint">Open full view →</span>
         <span class="model-name">Model: qween3.8-flash-next-dual</span>
       </div>
     </a>
@@ -258,7 +258,7 @@ footer a:hover { color: var(--green); border-color: var(--green); }
 </section>
 
 <footer>
-  built by <a href="https://x.com/jvr0x" target="_blank" rel="noopener">jvr0x</a>
+  Built by <a href="https://x.com/jvr0x" target="_blank" rel="noopener">jvr0x</a>
 </footer>
 
 </div>
@@ -282,7 +282,7 @@ fetch('prompt.md').then(r => r.ok ? r.text() : Promise.reject(r.status)).then(t 
   document.getElementById('prompt-text').textContent = t;
 }).catch(() => {
   document.getElementById('prompt-text').textContent =
-    'could not load prompt.md, see the repo: https://github.com/jvr0x/jvr0x.github.io';
+    'Could not load prompt.md, see the repo: https://github.com/jvr0x/jvr0x.github.io';
 });
 </script>
 </body>
