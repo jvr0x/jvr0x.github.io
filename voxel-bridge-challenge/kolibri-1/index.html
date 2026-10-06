@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Voxel Bridge Challenge</title>
+  <style>
+    body { margin: 0; background: #111; color: #eee; font-family: sans-serif; }
+    header { text-align: center; padding: 1rem; }
+    h1 { margin: 0; font-size: 2rem; }
+    .model-badge { font-size: 0.8rem; color: #888; }
+    #layout { display: flex; height: calc(100vh - 2rem); }
+    #controls { width: 200px; background: #222; padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem; overflow-y: auto; }
+    button { padding: 0.5rem 1rem; background: #333; color: #eee; border: 1px solid #555; cursor: pointer; }
+    button:hover { background: #444; }
+    #log { flex: 1; overflow-y: auto; padding: 1rem; }
+    #hud { position: fixed; top: 10px; right: 10px; background: #333; padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Voxel Bridge Challenge</h1>
+    <div class="model-badge">Model: kolibri-1</div>
+  </header>
+  <div id="hud">Blocks: 0 | River: 10</div>
+  <div id="layout">
+    <div id="controls">
+      <button id="build">Build Bridge</button>
+      <button id="earthquake">Earthquake</button>
+      <button id="widen">Widen River</button>
+      <button id="reset">Reset</button>
+    </div>
+    <div id="log"></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script>
+    // Scene setup
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x111111);
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(0, 10, 20);
+    camera.lookAt(0, 0, 0);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+    
+    // Custom orbit controls
+    let theta = Math.atan2(camera.position.z, camera.position.x);
+    let phi = Math.acos(Math.max(-1, Math.min(1, camera.position.y / 25)));
+    let isDragging = false;
+    let lastX = 0;
+    let lastY = 0;
+    
+    function updateCameraPosition() {
+      const distance = 25;
+      camera.position.x = distance * Math.sin(phi) * Math.cos(theta);
+      camera.position.y = distance * Math.cos(phi);
+      camera.position.z = distance * Math.sin(phi) * Math.sin(theta);
+      camera.lookAt(0, 0, 0);
+    }
+    
+    window.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      lastX = e.clientX;
+      lastY = e.clientY;
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (isDragging) {
+        const deltaX = e.clientX - lastX;
+        const deltaY = e.clientY - lastY;
+        theta += deltaX * 0.005;
+        phi += deltaY * 0.005;
+        phi = Math.max(Math.PI/6, Math.min(Math.PI - Math.PI/6, phi)); // limit vertical angle
+        lastX = e.clientX;
+        lastY = e.clientY;
+        updateCameraPosition();
+      }
+    });
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+    
+    // Lights
+    const ambient = new THREE.AmbientLight(0x404040, 0.5);
+    scene.add(ambient);
+    const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    dirLight.position.set(10, 20, 10);
+    scene.add(dirLight);
+    const pointLight = new THREE.PointLight(0xffaa44, 0.5, 30);
+    pointLight.position.set(0, 5, 15);
+    scene.add(pointLight);
+    
+    // Ground plane
+    const ground = new THREE.Mesh(
+      new THREE.PlaneGeometry(50, 50),
+      new THREE.MeshStandardMaterial({ color: 0x222222 })
+    );
+    ground.rotation.x = -Math.PI/2;
+    scene.add(ground);
+    
+    // River
+    let riverWidth = 10;
+    const river = new THREE.Mesh(
+      new THREE.BoxGeometry(riverWidth, 0.5, 50),
+      new THREE.MeshStandardMaterial({ color: 0x0066ff })
+    );
+    river.position.y = -0.25;
+    scene.add(river);
+    
+    // Bridge data
+    let blocks = [];
+    const colors = ['#ff4444', '#4444ff', '#44ff44', '#ffff44'];
+    
+    function createBlock(x, y, z, color) {
+      const geometry = new THREE.BoxGeometry(1, 1, 1);
+      const material = new THREE.MeshStandardMaterial({ color, roughness: 0.3, metalness: 0.1 });
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.set(x, y, z);
+      scene.add(mesh);
+      return mesh;
+    }
+    
+    function log(message) {
+      const logEl = document.getElementById('log');
+      const timestamp = new Date().toLocaleTimeString();
+      const entry = document.createElement('div');
+      entry.textContent = `[${timestamp}] ${message}`;
+      logEl.appendChild(entry);
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+    
+    function updateHUD() {
+      document.getElementById('hud').textContent = `Blocks: ${blocks.length} | River: ${riverWidth}`;
+    }
+    
+    // Pre-written reasoning steps
+    const reasoningSteps = [
+      "Step 1: The river is initially 10 units wide.",
+      "Step 2: Building a two-block-wide arch bridge with 40 blocks across four colors.",
+      "Step 3: Each color will have 10 blocks for even distribution.",
+      "Step 4: The bridge spans the river with a walkway on top.",
+      "Step 5: An earthquake removes two central support blocks, leaving 38 blocks.",
+      "Step 6: The bridge will be rebuilt with the remaining 38 blocks.",
+      "Step 7: The river widens to 14 units, and the bridge stretches to match.",
+      "Step 8: All blocks are rearranged to maintain structural integrity.",
+      "Step 9: Reset restores the initial state."
+    ];
+    
+    let reasoningIndex = 0;
+    function revealReasoning(delay = 0) {
+      setTimeout(() => {
+        if (reasoningIndex < reasoningSteps.length) {
+          log(reasoningSteps[reasoningIndex]);
+          reasoningIndex++;
+          revealReasoning(1000);
+        }
+      }, delay);
+    }
+    
+    function buildBridge() {
+      // Clear existing bridge
+      blocks.forEach(b => scene.remove(b));
+      blocks = [];
+      
+      const totalBlocks = 40;
+      const width = 2;
+      const length = totalBlocks / width; // 20
+      
+      let red = 0, blue = 0, green = 0, yellow = 0;
+      
+      for (let i = 0; i < totalBlocks; i++) {
+        const colorIndex = i % 4;
+        const color = colors[colorIndex];
+        if (colorIndex === 0) red++;
+        else if (colorIndex === 1) blue++;
+        else if (colorIndex === 2) green++;
+        else yellow++;
+        
+        const blockIndexAlongLength = Math.floor(i / width);
+        const blockX = -riverWidth/2 - width/2 + 0.5 + blockIndexAlongLength;
+        const blockZ = 0;
+        const blockY = 0.5;
+        
+        const mesh = createBlock(blockX, blockY, blockZ, color);
+        blocks.push(mesh);
+      }
+      
+      log(`Built bridge with ${totalBlocks} blocks. Per-color count: red=${red}, blue=${blue}, green=${green}, yellow=${yellow}`);
+      updateHUD();
+      revealReasoning(500);
+    }
+    
+    function earthquake() {
+      if (blocks.length === 0) return;
+      const midIndex = Math.floor(blocks.length / 2);
+      const blocksToRemove = [blocks[midIndex - 1], blocks[midIndex]];
+      
+      log("Earthquake: Removing two central support blocks...");
+      blocksToRemove.forEach(block => {
+        scene.remove(block);
+        const idx = blocks.indexOf(block);
+        if (idx !== -1) blocks.splice(idx, 1);
+      });
+      
+      const remainingBlocks = blocks.length;
+      const width = 2;
+      const length = remainingBlocks / width;
+      
+      blocks.forEach(b => scene.remove(b));
+      blocks = [];
+      
+      let red = 0, blue = 0, green = 0, yellow = 0;
+      for (let i = 0; i < remainingBlocks; i++) {
+        const colorIndex = i % 4;
+        const color = colors[colorIndex];
+        if (colorIndex === 0) red++;
+        else if (colorIndex === 1) blue++;
+        else if (colorIndex === 2) green++;
+        else yellow++;
+        
+        const blockIndexAlongLength = Math.floor(i / width);
+        const blockX = -riverWidth/2 - width/2 + 0.5 + blockIndexAlongLength;
+        const blockZ = 0;
+        const blockY = 0.5;
+        
+        const mesh = createBlock(blockX, blockY, blockZ, color);
+        blocks.push(mesh);
+      }
+      
+      log(`Earthquake: Rebuilt bridge with ${remainingBlocks} blocks. Per-color count: red=${red}, blue=${blue}, green=${green}, yellow=${yellow}`);
+      updateHUD();
+      revealReasoning(1500);
+    }
+    
+    function widenRiver() {
+      const newRiverWidth = 14;
+      log(`Widen River: River width increasing from ${riverWidth} to ${newRiverWidth}`);
+      
+      const start = riverWidth;
+      const end = newRiverWidth;
+      const duration = 2000;
+      const startTime = Date.now();
+      
+      function animateRiverWidth() {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const currentWidth = start + (end - start) * progress;
+        river.geometry = new THREE.BoxGeometry(currentWidth, 0.5, 50);
+        riverWidth = currentWidth;
+        updateHUD();
+        if (progress < 1) requestAnimationFrame(animateRiverWidth);
+      }
+      animateRiverWidth();
+      
+      setTimeout(() => {
+        blocks.forEach(b => scene.remove(b));
+        blocks = [];
+        
+        const totalBlocks = 38;
+        const width = 2;
+        const length = totalBlocks / width;
+        
+        let red = 0, blue = 0, green = 0, yellow = 0;
+        for (let i = 0; i < totalBlocks; i++) {
+          const colorIndex = i % 4;
+          const color = colors[colorIndex];
+          if (colorIndex === 0) red++;
+          else if (colorIndex === 1) blue++;
+          else if (colorIndex === 2) green++;
+          else yellow++;
+          
+          const blockIndexAlongLength = Math.floor(i / width);
+          const blockX = -newRiverWidth/2 - width/2 + 0.5 + blockIndexAlongLength * (newRiverWidth / length);
+          const blockZ = 0;
+          const blockY = 0.5;
+          
+          const mesh = createBlock(blockX, blockY, blockZ, color);
+          blocks.push(mesh);
+        }
+        
+        log(`Widen River: Bridge stretched to ${newRiverWidth} units wide using ${totalBlocks} blocks. Per-color: red=${red}, blue=${blue}, green=${green}, yellow=${yellow}`);
+        updateHUD();
+        revealReasoning(2500);
+      }, duration + 500);
+    }
+    
+    function reset() {
+      blocks.forEach(b => scene.remove(b));
+      blocks = [];
+      riverWidth = 10;
+      river.geometry = new THREE.BoxGeometry(riverWidth, 0.5, 50);
+      updateHUD();
+      log('Reset: cleared all blocks and restored river width to 10');
+      revealReasoning(3500);
+    }
+    
+    // Event listeners
+    document.getElementById('build').addEventListener('click', buildBridge);
+    document.getElementById('earthquake').addEventListener('click', earthquake);
+    document.getElementById('widen').addEventListener('click', widenRiver);
+    document.getElementById('reset').addEventListener('click', reset);
+    
+    // Animation loop
+    function animate() {
+      requestAnimationFrame(animate);
+      renderer.render(scene, camera);
+    }
+    animate();
+    
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+    
+    revealReasoning(0);
+  </script>
+</body>
+</html>
