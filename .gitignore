@@ -17,3 +17,7 @@
 # Env
 .env
 .env.*
+
+# Python
+__pycache__/
+.pytest_cache/
