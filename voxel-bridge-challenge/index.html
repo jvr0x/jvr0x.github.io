@@ -3,8 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Voxel Bridge Challenge</title>
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<!-- jx:head -->
+<title>Voxel Bridge Challenge · jvr0x</title>
+<meta name="description" content="One prompt, several local models: each builds the same Three.js voxel world with a 40-block arch bridge, an earthquake rebuild and a widening river. Live side-by-side comparison.">
+<link rel="canonical" href="https://jvr0x.com/voxel-bridge-challenge/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="jvr0x">
+<meta property="og:title" content="Voxel Bridge Challenge · jvr0x">
+<meta property="og:description" content="One prompt, several local models: each builds the same Three.js voxel world with a 40-block arch bridge, an earthquake rebuild and a widening river. Live side-by-side comparison.">
+<meta property="og:url" content="https://jvr0x.com/voxel-bridge-challenge/">
+<meta property="og:image" content="https://jvr0x.com/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@jvr0x">
+<meta name="twitter:creator" content="@jvr0x">
+<meta name="twitter:title" content="Voxel Bridge Challenge · jvr0x">
+<meta name="twitter:description" content="One prompt, several local models: each builds the same Three.js voxel world with a 40-block arch bridge, an earthquake rebuild and a widening river. Live side-by-side comparison.">
+<meta name="twitter:image" content="https://jvr0x.com/assets/og-default.png">
+<!-- /jx:head -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -36,21 +54,6 @@ body {
   line-height: 1.7;
   overflow-x: hidden;
 }
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  font-size: 0.85rem;
-}
-.topbar .logo { color: var(--green); font-weight: 700; font-size: 1.1rem; }
-.blink { animation: blink 1s step-end infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-.topbar .back {
-  color: var(--text-dim);
-  border-bottom: 1px dashed var(--border);
-  padding-bottom: 2px;
-}
-.topbar .back:hover { color: var(--green); border-color: var(--green); }
 a { color: var(--green); text-decoration: none; transition: color 0.2s; }
 a:hover { color: var(--cyan); }
 
@@ -62,10 +65,10 @@ a:hover { color: var(--cyan); }
   background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
 }
 
-.wrap { max-width: 1120px; margin: 0 auto; padding: 16px 24px 64px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 40px 24px 32px; }
 
-header { margin-bottom: 2.5rem; }
-header .prompt { margin-bottom: 0.4rem; }
+.page-head { margin-bottom: 2.5rem; }
+.page-head .prompt { margin-bottom: 0.4rem; }
 h1 { color: var(--white); font-size: 2rem; font-weight: 700; margin-bottom: 0.3rem; }
 .tagline { color: var(--text-dim); font-size: 0.9rem; }
 
@@ -172,33 +175,41 @@ details pre {
 }
 .card:hover .open-hint { color: var(--green); }
 
-footer {
-  margin-top: 3rem;
-  color: var(--text-dim);
-  font-size: 0.8rem;
+@media (max-width: 640px) {
+  .wrap { padding: 24px 16px 24px; }
+  h1 { font-size: 1.5rem; }
+  .grid { grid-template-columns: minmax(0, 1fr); }
 }
-footer a { border-bottom: 1px dashed var(--border); padding-bottom: 2px; }
-footer a:hover { color: var(--green); border-color: var(--green); }
 
 @media (prefers-reduced-motion: reduce) {
   .card { transition: none; }
 }
 </style>
+<link rel="stylesheet" href="/assets/chrome.css">
 </head>
 <body>
+<!-- jx:header -->
+<header class="jx-header">
+  <a class="jx-logo" href="/">jvr0x<span class="jx-blink">_</span></a>
+  <nav class="jx-nav" aria-label="Site">
+    <a href="/about/">about</a>
+    <a href="/newsletter/">newsletter</a>
+    <a href="/models/">models</a>
+    <a href="/recipes/">recipes</a>
+    <a href="/lab/">lab</a>
+    <a href="/tools/">tools</a>
+    <a href="/bots/">bots</a>
+  </nav>
+</header>
+<!-- /jx:header -->
 <div class="scanline"></div>
 <div class="wrap">
 
-<div class="topbar">
-  <span class="logo">jvr0x<span class="blink">_</span></span>
-  <a class="back" href="https://jvr0x.com/">&larr; jvr0x.com</a>
-</div>
-
-<header>
+<div class="page-head">
   <p class="prompt">$ cd ~/voxel-bridge-challenge && ls</p>
   <h1>Voxel Bridge Challenge</h1>
   <p class="tagline">One prompt · several local models · same world, different builders</p>
-</header>
+</div>
 
 <section class="section">
   <span class="prompt">$ cat purpose.md</span>
@@ -263,13 +274,13 @@ footer a:hover { color: var(--green); border-color: var(--green); }
       </div>
     </a>
 
-    <a class="card" href="qween3.8-flash-next-dual/index.html" target="_blank" rel="noopener">
+    <a class="card" href="qwen3.8-flash-next-dual/index.html" target="_blank" rel="noopener">
       <div class="thumb" data-scale>
-        <iframe src="qween3.8-flash-next-dual/index.html" title="qween3.8-flash-next-dual preview" tabindex="-1" loading="lazy" scrolling="no"></iframe>
+        <iframe src="qwen3.8-flash-next-dual/index.html" title="qwen3.8-flash-next-dual preview" tabindex="-1" loading="lazy" scrolling="no"></iframe>
       </div>
       <div class="card-body">
         <span class="open-hint">Open full view →</span>
-        <span class="model-name">Model: qween3.8-flash-next-dual</span>
+        <span class="model-name">Model: qwen3.8-flash-next-dual</span>
       </div>
     </a>
 
@@ -286,11 +297,25 @@ footer a:hover { color: var(--green); border-color: var(--green); }
   </div>
 </section>
 
-<footer>
-  Built by <a href="https://x.com/jvr0x" target="_blank" rel="noopener">jvr0x</a>
-</footer>
-
 </div>
+
+<!-- jx:footer -->
+<footer class="jx-footer">
+  <div class="jx-signup">
+    <p class="jx-prompt">$ subscribe agi-checkpoint</p>
+    <p>AGI Checkpoint: the AI releases worth your time, every Friday. Free Local AI Cheat Sheet when you sign up.</p>
+    <iframe src="https://agicheckpoint.com/embed" title="Subscribe to AGI Checkpoint" loading="lazy" frameborder="0" scrolling="no"></iframe>
+  </div>
+  <div class="jx-footer-links">
+    <a href="https://x.com/jvr0x" rel="noopener">x.com/jvr0x</a>
+    <a href="https://github.com/jvr0x" rel="noopener">github</a>
+    <a href="https://huggingface.co/jvr0x" rel="noopener">huggingface</a>
+    <a href="https://agicheckpoint.com" rel="noopener">agicheckpoint.com</a>
+    <a href="https://ko-fi.com/jvr0x" rel="noopener">ko-fi</a>
+  </div>
+  <p class="jx-sig">Javier &bull; priv/acc | Local AI, security, privacy &amp; crypto</p>
+</footer>
+<!-- /jx:footer -->
 
 <script>
 // Scale each live iframe (rendered at 1920x1200) down into its 16:10 thumbnail box.
