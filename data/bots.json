@@ -2,7 +2,7 @@
   {
     "title": "AGI Checkpoint",
     "url": "https://x.ai/bot/Mj5NGpCO2mcpit2zPqUjg",
-    "description": "Grok bot for the AGI Checkpoint newsletter. It delivers each Friday issue, plus a mid-week roundup of my X posts on local AI, open models and tools.",
+    "description": "Grok bot for the AGI Checkpoint newsletter. It delivers each Friday issue, plus a mid-week roundup of my X posts.",
     "tags": ["Grok", "Newsletter", "Weekly"],
     "links": [
       {"label": "open the bot", "url": "https://x.ai/bot/Mj5NGpCO2mcpit2zPqUjg"},
