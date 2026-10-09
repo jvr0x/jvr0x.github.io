@@ -1,0 +1,40 @@
+# jvr0x
+
+> Javier • priv/acc | Local AI, security, privacy & crypto. I run 3× DGX Spark and publish open benchmarks, recipes and fine-tunes. Founder of Odin Scan · ex-Spotify · led smart contract teams at MANTRA/Migaloo. I write AGI Checkpoint, a weekly newsletter for people who run models locally.
+
+## Site
+
+- [Home](https://jvr0x.com/): overview and latest work
+- [About](https://jvr0x.com/about/): experience, stack, education, languages, contact
+- [Newsletter: AGI Checkpoint](https://jvr0x.com/newsletter/): weekly, every Friday; open models, research, training recipes, tools
+- [Models](https://jvr0x.com/models/): fine-tunes trained on one DGX Spark, published as GGUF
+- [Recipes](https://jvr0x.com/recipes/): lmswitch serving configs for DGX Spark and the dgx-spark-bench recipe behind every benchmark
+- [Lab](https://jvr0x.com/lab/): benchmarks, a tokens/sec simulator, the Voxel Bridge Challenge
+- [Tools](https://jvr0x.com/tools/): lmswitch, murmur, SolDecode, zed-token-counter, dgx-spark-rack
+- [Grok bots](https://jvr0x.com/bots/): the AGI Checkpoint bot on X
+
+## Projects
+
+- [DGX Spark LLM Bench](https://jvr0x.com/dgx-spark-bench/): live benchmarks of local LLMs on DGX Spark (parallel sessions, tokens/sec, latency), open data
+- [tok-sim](https://jvr0x.com/tok-sim/): visual simulator of what a given tokens/sec looks like
+- [Voxel Bridge Challenge](https://jvr0x.com/voxel-bridge-challenge/): one prompt, many local models, same Three.js world
+- [murmur](https://jvr0x.com/murmur/): local hold-to-talk dictation for macOS (whisper.cpp)
+- [SolDecode](https://jvr0x.com/soldecode-extension/): Chrome extension that previews Solana transactions before signing
+- [lmswitch](https://github.com/jvr0x/lmswitch): list and toggle local LLMs from per-model YAML configs
+- [ai-models](https://github.com/jvr0x/ai-models): the lmswitch recipes I run
+- [zed-token-counter](https://github.com/jvr0x/zed-token-counter): Zed extension showing LLM token counts as inline hints
+- [dgx-spark-rack](https://github.com/jvr0x/dgx-spark-rack): stackable 3D-printable desktop rack for DGX Spark (OpenSCAD)
+- [Odin Scan](https://odinscan.ai): continuous AI security auditing for smart contracts
+
+## Models
+
+- [Javi0.2-4B (alpha)](https://huggingface.co/jvr0x/Javi0.2-4B-GGUF): 4B agent model fine-tuned from Qwen3.5-4B to look things up instead of guessing
+- [Qwen3-4B Pirate](https://huggingface.co/jvr0x/Qwen3-4B-Pirate-GGUF): Qwen3-4B-Instruct-2507 fine-tuned to answer in pirate dialect
+
+## Elsewhere
+
+- [AGI Checkpoint](https://agicheckpoint.com)
+- [X: @jvr0x](https://x.com/jvr0x)
+- [GitHub](https://github.com/jvr0x)
+- [Hugging Face](https://huggingface.co/jvr0x)
+- Email: javier@jvr0x.addy.io
