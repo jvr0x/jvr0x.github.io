@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- jx:head -->
+<title>Models · jvr0x</title>
+<meta name="description" content="Local AI fine-tunes by jvr0x, trained on one DGX Spark and published as GGUF on Hugging Face: Javi0.2-4B agent model and Qwen3-4B Pirate.">
+<link rel="canonical" href="https://jvr0x.com/models/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="jvr0x">
+<meta property="og:title" content="Models · jvr0x">
+<meta property="og:description" content="Local AI fine-tunes by jvr0x, trained on one DGX Spark and published as GGUF on Hugging Face: Javi0.2-4B agent model and Qwen3-4B Pirate.">
+<meta property="og:url" content="https://jvr0x.com/models/">
+<meta property="og:image" content="https://jvr0x.com/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@jvr0x">
+<meta name="twitter:creator" content="@jvr0x">
+<meta name="twitter:title" content="Models · jvr0x">
+<meta name="twitter:description" content="Local AI fine-tunes by jvr0x, trained on one DGX Spark and published as GGUF on Hugging Face: Javi0.2-4B agent model and Qwen3-4B Pirate.">
+<meta name="twitter:image" content="https://jvr0x.com/assets/og-default.png">
+<!-- /jx:head -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css?v=3">
+  <link rel="stylesheet" href="/assets/chrome.css">
+</head>
+<body>
+<!-- jx:header -->
+<header class="jx-header">
+  <a class="jx-logo" href="/">jvr0x<span class="jx-blink">_</span></a>
+  <nav class="jx-nav" aria-label="Site">
+    <a href="/about/">about</a>
+    <a href="/newsletter/">newsletter</a>
+    <a href="/models/">models</a>
+    <a href="/recipes/">recipes</a>
+    <a href="/lab/">lab</a>
+    <a href="/tools/">tools</a>
+    <a href="/bots/">bots</a>
+  </nav>
+</header>
+<!-- /jx:header -->
+  <div class="scanline"></div>
+
+<main>
+  <section class="section page-head">
+    <p class="prompt">$ ls ~/models/</p>
+    <h1>Models</h1>
+    <p class="lede">Fine-tunes I train on a single DGX Spark and publish as GGUF on
+      <a href="https://huggingface.co/jvr0x" rel="noopener">Hugging Face</a>, with a write-up on X for each release.</p>
+  </section>
+
+  <section class="section">
+    <div class="cards">
+<!-- jx:cards models -->
+<div class="card fade-in">
+  <h3 class="card-title"><a href="https://huggingface.co/jvr0x/Javi0.2-4B-GGUF" rel="noopener">Javi0.2-4B (alpha)</a></h3>
+  <p class="card-desc">A 4B agent model fine-tuned from Qwen3.5-4B to look things up instead of guessing, say so when it can&#x27;t verify, and reason from first principles. Trained on one DGX Spark.</p>
+  <p class="card-meta">GGUF · Q8_0 / Q4_K_M · base Qwen3.5-4B</p>
+  <div class="tags"><span class="tag sm">Agent</span><span class="tag sm">Fine-tune</span><span class="tag sm">DGX Spark</span></div>
+  <div class="card-links"><a href="https://huggingface.co/jvr0x/Javi0.2-4B-GGUF" rel="noopener">Hugging Face</a><a href="https://x.com/jvr0x/status/2103182873268244639" rel="noopener">write-up on X</a></div>
+</div>
+<div class="card fade-in">
+  <h3 class="card-title"><a href="https://huggingface.co/jvr0x/Qwen3-4B-Pirate-GGUF" rel="noopener">Qwen3-4B Pirate</a></h3>
+  <p class="card-desc">Qwen3-4B-Instruct-2507 fine-tuned to answer everything in heavy pirate dialect, no system prompt needed. LoRA trained in 7m20s on one DGX Spark with Unsloth; 74.5 tok/s at Q4_K_M on Spark.</p>
+  <p class="card-meta">GGUF · Q4_K_M · base Qwen3-4B-Instruct-2507</p>
+  <div class="tags"><span class="tag sm">LoRA</span><span class="tag sm">Unsloth</span><span class="tag sm">DGX Spark</span></div>
+  <div class="card-links"><a href="https://huggingface.co/jvr0x/Qwen3-4B-Pirate-GGUF" rel="noopener">Hugging Face</a><a href="https://x.com/jvr0x/status/2102364361998188575" rel="noopener">write-up on X</a></div>
+</div>
+<!-- /jx:cards -->
+    </div>
+  </section>
+</main>
+
+<!-- jx:footer -->
+<footer class="jx-footer">
+  <div class="jx-signup">
+    <p class="jx-prompt">$ subscribe agi-checkpoint</p>
+    <p>AGI Checkpoint: the AI releases worth your time, every Friday. Free Local AI Cheat Sheet when you sign up.</p>
+    <iframe src="https://agicheckpoint.com/embed" title="Subscribe to AGI Checkpoint" loading="lazy" frameborder="0" scrolling="no"></iframe>
+  </div>
+  <div class="jx-footer-links">
+    <a href="https://x.com/jvr0x" rel="noopener">x.com/jvr0x</a>
+    <a href="https://github.com/jvr0x" rel="noopener">github</a>
+    <a href="https://huggingface.co/jvr0x" rel="noopener">huggingface</a>
+    <a href="https://agicheckpoint.com" rel="noopener">agicheckpoint.com</a>
+    <a href="https://ko-fi.com/jvr0x" rel="noopener">ko-fi</a>
+  </div>
+  <p class="jx-sig">Javier &bull; priv/acc | Local AI, security, privacy &amp; crypto</p>
+</footer>
+<!-- /jx:footer -->
+  <script src="/script.js"></script>
+</body>
+</html>
