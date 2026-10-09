@@ -7,7 +7,7 @@ My portfolio — a single-page HTML site.
 ## Contents
 
 This repo contains the source for my personal portfolio page, hosted at
-[jvr0x.github.io](https://jvr0x.github.io). It's a terminal-themed, dark-mode
+[jvr0x.com](https://jvr0x.com). It's a terminal-themed, dark-mode
 single-page layout covering my background, tech stack, experience, projects,
 and education.
 
