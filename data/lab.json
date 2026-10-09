@@ -1,0 +1,20 @@
+[
+  {
+    "title": "DGX Spark LLM Bench",
+    "url": "/dgx-spark-bench/",
+    "description": "Live benchmarks of local LLMs on DGX Spark: how many parallel agent sessions one box sustains, at what tokens/sec and latency. Interactive dashboard, one-command recipes, measured numbers.",
+    "tags": ["DGX Spark", "vLLM", "llama.cpp", "Open data"]
+  },
+  {
+    "title": "tok-sim",
+    "url": "/tok-sim/",
+    "description": "Visual tokens/sec simulator: see what a given speed looks like generating prose, code, math and more, with a side-by-side comparison mode.",
+    "tags": ["Simulator", "Tokens/sec"]
+  },
+  {
+    "title": "Voxel Bridge Challenge",
+    "url": "/voxel-bridge-challenge/",
+    "description": "One prompt, many local models. Each builds the same self-contained Three.js voxel world: a 40-block arch bridge, an earthquake rebuild and a widening river. Live side-by-side comparison.",
+    "tags": ["Local models", "Three.js", "Eval"]
+  }
+]

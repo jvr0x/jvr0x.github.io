@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Models",
+    "url": "/models/",
+    "description": "Fine-tunes trained on one DGX Spark and published as GGUF: Javi0.2-4B, an agent model that looks things up instead of guessing, and Qwen3-4B Pirate.",
+    "tags": ["Fine-tunes", "GGUF", "Hugging Face"]
+  },
+  {
+    "title": "Recipes",
+    "url": "/recipes/",
+    "description": "The lmswitch configs I actually run on DGX Spark (llama.cpp, vLLM, ExLlamaV3) and the reproducible recipe behind every benchmark.",
+    "tags": ["lmswitch", "vLLM", "llama.cpp"]
+  },
+  {
+    "title": "Benchmarks",
+    "url": "/dgx-spark-bench/",
+    "description": "Live LLM benchmarks on DGX Spark: parallel agent sessions, tokens/sec and latency per model and runtime, with open data.",
+    "tags": ["DGX Spark", "Open data"]
+  },
+  {
+    "title": "Grok bots",
+    "url": "/bots/",
+    "description": "The AGI Checkpoint Grok bot: each Friday issue plus a mid-week roundup of my X posts.",
+    "tags": ["Grok", "Newsletter"]
+  },
+  {
+    "title": "Tools",
+    "url": "/tools/",
+    "description": "lmswitch, murmur local dictation, SolDecode, a Zed token counter and a 3D-printable DGX Spark rack.",
+    "tags": ["CLI", "macOS", "Extensions"]
+  },
+  {
+    "title": "Lab",
+    "url": "/lab/",
+    "description": "Experiments: the DGX Spark bench, a tokens/sec simulator and the Voxel Bridge Challenge.",
+    "tags": ["Benchmarks", "Evals"]
+  },
+  {
+    "title": "Odin Scan",
+    "url": "https://odinscan.ai",
+    "description": "My company: continuous AI security auditing for smart contracts, with multi-agent pipelines across EVM, Solana, CosmWasm and Move.",
+    "tags": ["Security", "Agents", "Smart contracts"]
+  }
+]

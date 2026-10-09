@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- jx:head -->
+<title>Tools · jvr0x</title>
+<meta name="description" content="Local AI tools by jvr0x: lmswitch model switcher, murmur local dictation for macOS, SolDecode Solana transaction preview, a Zed token counter and a 3D-printable DGX Spark rack.">
+<link rel="canonical" href="https://jvr0x.com/tools/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="jvr0x">
+<meta property="og:title" content="Tools · jvr0x">
+<meta property="og:description" content="Local AI tools by jvr0x: lmswitch model switcher, murmur local dictation for macOS, SolDecode Solana transaction preview, a Zed token counter and a 3D-printable DGX Spark rack.">
+<meta property="og:url" content="https://jvr0x.com/tools/">
+<meta property="og:image" content="https://jvr0x.com/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@jvr0x">
+<meta name="twitter:creator" content="@jvr0x">
+<meta name="twitter:title" content="Tools · jvr0x">
+<meta name="twitter:description" content="Local AI tools by jvr0x: lmswitch model switcher, murmur local dictation for macOS, SolDecode Solana transaction preview, a Zed token counter and a 3D-printable DGX Spark rack.">
+<meta name="twitter:image" content="https://jvr0x.com/assets/og-default.png">
+<!-- /jx:head -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css?v=3">
+  <link rel="stylesheet" href="/assets/chrome.css">
+</head>
+<body>
+<!-- jx:header -->
+<header class="jx-header">
+  <a class="jx-logo" href="/">jvr0x<span class="jx-blink">_</span></a>
+  <nav class="jx-nav" aria-label="Site">
+    <a href="/about/">about</a>
+    <a href="/newsletter/">newsletter</a>
+    <a href="/models/">models</a>
+    <a href="/recipes/">recipes</a>
+    <a href="/lab/">lab</a>
+    <a href="/tools/">tools</a>
+    <a href="/bots/">bots</a>
+  </nav>
+</header>
+<!-- /jx:header -->
+  <div class="scanline"></div>
+
+<main>
+  <section class="section page-head">
+    <p class="prompt">$ ls ~/tools/</p>
+    <h1>Tools</h1>
+    <p class="lede">Small tools I built because I needed them: for running local models, for privacy, and for the hardware on my desk.</p>
+  </section>
+
+  <section class="section">
+    <div class="cards">
+<!-- jx:cards tools -->
+<div class="card fade-in">
+  <h3 class="card-title"><a href="https://github.com/jvr0x/lmswitch" rel="noopener">lmswitch</a></h3>
+  <p class="card-desc">List and toggle local LLMs (GGUF via llama.cpp, vLLM via Docker) from per-model YAML configs. The recipes on this site are lmswitch configs.</p>
+  <div class="tags"><span class="tag sm">CLI</span><span class="tag sm">Python</span><span class="tag sm">llama.cpp</span><span class="tag sm">vLLM</span></div>
+  <div class="card-links"><a href="/recipes/">recipes</a></div>
+</div>
+<div class="card fade-in">
+  <h3 class="card-title"><a href="/murmur/">murmur</a></h3>
+  <p class="card-desc">Local, hold-to-talk voice dictation for macOS. Transcribes with whisper.cpp and types into any app, with optional LLM cleanup via Ollama.</p>
+  <div class="tags"><span class="tag sm">macOS</span><span class="tag sm">whisper.cpp</span><span class="tag sm">Privacy</span></div>
+  <div class="card-links"><a href="https://github.com/jvr0x/murmur" rel="noopener">GitHub</a></div>
+</div>
+<div class="card fade-in">
+  <h3 class="card-title"><a href="/soldecode-extension/">SolDecode</a></h3>
+  <p class="card-desc">Chrome extension that previews Solana transactions before you sign them: simulates against live on-chain state and shows balance changes, risk warnings and a plain-English breakdown.</p>
+  <div class="tags"><span class="tag sm">Chrome extension</span><span class="tag sm">Solana</span><span class="tag sm">Wallet security</span></div>
+</div>
+<div class="card fade-in">
+  <h3 class="card-title"><a href="https://github.com/jvr0x/zed-token-counter" rel="noopener">zed-token-counter</a></h3>
+  <p class="card-desc">Zed editor extension that shows LLM token counts as inline hints.</p>
+  <div class="tags"><span class="tag sm">Zed</span><span class="tag sm">Extension</span><span class="tag sm">Tokens</span></div>
+</div>
+<div class="card fade-in">
+  <h3 class="card-title"><a href="https://github.com/jvr0x/dgx-spark-rack" rel="noopener">dgx-spark-rack</a></h3>
+  <p class="card-desc">Stackable, parametric, 3D-printable desktop rack for DGX Spark, written in OpenSCAD.</p>
+  <div class="tags"><span class="tag sm">OpenSCAD</span><span class="tag sm">3D printing</span><span class="tag sm">DGX Spark</span></div>
+</div>
+<!-- /jx:cards -->
+    </div>
+  </section>
+</main>
+
+<!-- jx:footer -->
+<footer class="jx-footer">
+  <div class="jx-signup">
+    <p class="jx-prompt">$ subscribe agi-checkpoint</p>
+    <p>AGI Checkpoint: the AI releases worth your time, every Friday. Free Local AI Cheat Sheet when you sign up.</p>
+    <iframe src="https://agicheckpoint.com/embed" title="Subscribe to AGI Checkpoint" loading="lazy" frameborder="0" scrolling="no"></iframe>
+  </div>
+  <div class="jx-footer-links">
+    <a href="https://x.com/jvr0x" rel="noopener">x.com/jvr0x</a>
+    <a href="https://github.com/jvr0x" rel="noopener">github</a>
+    <a href="https://huggingface.co/jvr0x" rel="noopener">huggingface</a>
+    <a href="https://agicheckpoint.com" rel="noopener">agicheckpoint.com</a>
+    <a href="https://ko-fi.com/jvr0x" rel="noopener">ko-fi</a>
+  </div>
+  <p class="jx-sig">Javier &bull; priv/acc | Local AI, security, privacy &amp; crypto</p>
+</footer>
+<!-- /jx:footer -->
+  <script src="/script.js"></script>
+</body>
+</html>

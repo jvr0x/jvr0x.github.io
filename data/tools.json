@@ -1,0 +1,34 @@
+[
+  {
+    "title": "lmswitch",
+    "url": "https://github.com/jvr0x/lmswitch",
+    "description": "List and toggle local LLMs (GGUF via llama.cpp, vLLM via Docker) from per-model YAML configs. The recipes on this site are lmswitch configs.",
+    "tags": ["CLI", "Python", "llama.cpp", "vLLM"],
+    "links": [{"label": "recipes", "url": "/recipes/"}]
+  },
+  {
+    "title": "murmur",
+    "url": "/murmur/",
+    "description": "Local, hold-to-talk voice dictation for macOS. Transcribes with whisper.cpp and types into any app, with optional LLM cleanup via Ollama.",
+    "tags": ["macOS", "whisper.cpp", "Privacy"],
+    "links": [{"label": "GitHub", "url": "https://github.com/jvr0x/murmur"}]
+  },
+  {
+    "title": "SolDecode",
+    "url": "/soldecode-extension/",
+    "description": "Chrome extension that previews Solana transactions before you sign them: simulates against live on-chain state and shows balance changes, risk warnings and a plain-English breakdown.",
+    "tags": ["Chrome extension", "Solana", "Wallet security"]
+  },
+  {
+    "title": "zed-token-counter",
+    "url": "https://github.com/jvr0x/zed-token-counter",
+    "description": "Zed editor extension that shows LLM token counts as inline hints.",
+    "tags": ["Zed", "Extension", "Tokens"]
+  },
+  {
+    "title": "dgx-spark-rack",
+    "url": "https://github.com/jvr0x/dgx-spark-rack",
+    "description": "Stackable, parametric, 3D-printable desktop rack for DGX Spark, written in OpenSCAD.",
+    "tags": ["OpenSCAD", "3D printing", "DGX Spark"]
+  }
+]
