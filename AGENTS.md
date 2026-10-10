@@ -71,12 +71,13 @@ selectors, no `:root` variables, no `position: fixed`.
 
 If you change `partials/`, update the project repos to the same markup.
 
-Pages that show the signup embed in their own content add `class="jx-no-footer-signup"` to `<body>`
-so the footer doesn't repeat it (home, newsletter). Use `<iframe class="jx-embed" ...>` for an in-page embed.
+The footer has no newsletter signup. The Substack embed appears only on the homepage and /newsletter,
+as `<iframe class="jx-embed" ...>` in the page content.
 
 ## Identity and copy
 
-- Tagline: "Javier • priv/acc | Local AI, security, privacy & crypto" (hero, footer, meta descriptions, OG image, llms.txt)
+- Tagline: "Javier • priv/acc | Local AI, security, privacy & crypto" (footer, meta descriptions, OG image, llms.txt)
+- Hero (home and /about): heading "Javier • priv/acc", then "Local AI, security, privacy & crypto" below it, never the name twice
 - Titles: `jvr0x` on the homepage, `<Page> · jvr0x` on subpages (same for og:title / twitter:title)
 - Hero line: "I run 3× DGX Spark and publish open benchmarks, recipes and fine-tunes."
 - Meta descriptions lead with Local AI. No em dashes in new copy.

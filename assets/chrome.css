@@ -164,20 +164,6 @@
   max-width: none;
 }
 
-.jx-footer .jx-signup {
-  display: block;
-  margin-bottom: 2rem;
-  padding: 0;
-  border: 0;
-  background: transparent;
-}
-
-.jx-footer .jx-prompt {
-  color: var(--jx-green);
-  opacity: 0.8;
-  margin-bottom: 0.4rem;
-}
-
 .jx-footer .jx-footer-links {
   display: flex;
   flex-wrap: wrap;
@@ -203,8 +189,8 @@
 }
 
 /*
- * Substack embed (https://agicheckpoint.com/embed). Also usable in page content as
- * <iframe class="jx-embed" ...>.
+ * Substack embed (https://agicheckpoint.com/embed) for page content, as
+ * <iframe class="jx-embed" ...> (home and /newsletter only).
  * Reason: the embed is cross-origin, so it can't report its own height. Heights below are
  * the measured content height at each iframe width (Playwright, tools/measure_embed.py; see
  * AGENTS.md) plus ~24px above and below, which also keeps Substack's bottom-right watermark
@@ -215,9 +201,7 @@
  *   iframe 326-357px:     content <= 519 -> 568px
  *   iframe < 326px:       content 556 at 300px -> 610px
  * Breakpoints are viewport widths: iframe width = viewport - 2 * 16px gutter on phones.
- * The footer embed is refined with container queries below.
  */
-.jx-footer .jx-signup iframe,
 .jx-embed {
   display: block;
   width: 100%;
@@ -253,57 +237,21 @@
 }
 
 @media (max-width: 479px) {
-  .jx-footer .jx-signup iframe,
   .jx-embed {
     height: 528px;
   }
 }
 
 @media (max-width: 389px) {
-  .jx-footer .jx-signup iframe,
   .jx-embed {
     height: 568px;
   }
 }
 
 @media (max-width: 357px) {
-  .jx-footer .jx-signup iframe,
   .jx-embed {
     height: 610px;
   }
-}
-
-/*
- * Reason: on host pages with their own body padding (tok-sim, dgx-spark-bench) the footer is
- * narrower than the viewport, so the viewport breakpoints above can pick a height that is too
- * short. Where container queries are supported, size the footer embed from its real width.
- */
-.jx-footer .jx-signup {
-  container-type: inline-size;
-}
-
-@container (min-width: 448px) {
-  .jx-footer .jx-signup iframe { height: 508px; }
-}
-
-@container (min-width: 358px) and (max-width: 447.98px) {
-  .jx-footer .jx-signup iframe { height: 528px; }
-}
-
-@container (min-width: 326px) and (max-width: 357.98px) {
-  .jx-footer .jx-signup iframe { height: 568px; }
-}
-
-@container (max-width: 325.98px) {
-  .jx-footer .jx-signup iframe { height: 610px; }
-}
-
-/*
- * Pages that already show the signup embed in their content (home, newsletter) add
- * class="jx-no-footer-signup" to <body> so the footer doesn't repeat it.
- */
-.jx-no-footer-signup .jx-footer .jx-signup {
-  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
