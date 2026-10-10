@@ -191,3 +191,23 @@ def test_main_returns_nonzero_on_error(tmp_path, monkeypatch, capsys):
     monkeypatch.setattr(build, "ROOT", site)
     assert build.main([]) == 1
     assert "build failed" in capsys.readouterr().err
+
+
+def test_chrome_has_home_link_and_no_footer_signup():
+    """The nav links home first; only home and /newsletter carry the Substack embed, in their content."""
+    header = (REPO / "partials" / "header.html").read_text(encoding="utf-8")
+    footer = (REPO / "partials" / "footer.html").read_text(encoding="utf-8")
+    assert '<nav class="jx-nav" aria-label="Site">\n    <a href="/">home</a>' in header
+    assert "agicheckpoint.com/embed" not in footer and "jx-signup" not in footer
+    with_embed = {p.relative_to(REPO).as_posix() for p in REPO.glob("**/index.html") if "agicheckpoint.com/embed" in p.read_text(encoding="utf-8")}
+    assert with_embed == {"index.html", "newsletter/index.html"}
+
+
+def test_hero_shows_the_name_once():
+    """Home and /about head with "Javier • priv/acc" and don't repeat it on the line below."""
+    for page in ("index.html", "about/index.html"):
+        text = (REPO / page).read_text(encoding="utf-8")
+        hero = text[text.index("$ whoami"):]
+        hero = hero[: hero.index("</h1>") + 400]
+        assert "Javier &bull; priv/acc</h1>" in hero, page
+        assert hero.count("priv/acc") == 1, page

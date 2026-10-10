@@ -376,9 +376,18 @@ a:hover {
   box-shadow: 0 0 20px var(--green-dark);
 }
 
+.hero-id > div {
+  flex: 1;
+  min-width: 0;
+  container-type: inline-size;
+}
+
 .hero-id h1 {
   color: var(--white);
-  font-size: 2.2rem;
+  /* Reason: "Javier • priv/acc" (17 mono chars, ~10.2em wide) stays on one line: the size follows
+     the room beside the avatar, which shrinks in the two-column layout and on small phones. */
+  font-size: 1.6rem;
+  font-size: min(2.2rem, 9.4cqi);
   font-weight: 700;
   line-height: 1.2;
 }
@@ -690,10 +699,6 @@ a:hover {
   .hero-id img {
     width: 64px;
     height: 64px;
-  }
-
-  .hero-id h1 {
-    font-size: 1.6rem;
   }
 
   .tagline {
